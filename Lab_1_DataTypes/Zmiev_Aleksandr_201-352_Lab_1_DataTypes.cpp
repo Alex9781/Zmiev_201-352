@@ -3,7 +3,7 @@
 #include <float.h>
 #include <bitset>
 
-void main()
+int main()
 {
     std::cout << "1." << std::endl;
 
