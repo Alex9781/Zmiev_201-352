@@ -3,7 +3,7 @@
 #include <float.h>
 #include <bitset>
 
-int main()
+void main()
 {
     std::cout << "Zmiev Aleksandr Yurievich, 201-352" << std::endl;
 
