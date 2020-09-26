@@ -5,9 +5,11 @@
 
 void main()
 {
+    std::cout << "1." << std::endl;
+
     std::cout << "Zmiev Aleksandr Yurievich, 201-352" << std::endl;
 
-    std::cout << std::endl;
+    std::cout << "2." <<std::endl;
 
     std::cout << "min int = " << INT_MIN
         << ", max int = " << INT_MAX
@@ -45,7 +47,7 @@ void main()
         << ", max bool = " << bool(1)
         << ", size of bool = " << sizeof(bool) << std::endl;
 
-    std::cout << std::endl;
+    std::cout << "3." <<  std::endl;
 
     int digit;
     std::cout << "input: ";
@@ -56,14 +58,14 @@ void main()
         << "double: " << double(digit) << "\n"
         << "char: " << char(digit) << std::endl;
 
-    std::cout << std::endl;
+    std::cout << "4." << std::endl;
 
     int a, b;
     std::cout << "enter a and b: a * x = b: ";
     std::cin >> a >> b;
     std::cout << "x: " << float(b) / float(a) << std::endl;
 
-    std::cout << std::endl;
+    std::cout << "5." << std::endl;
 
     int x1, x2;
     std::cout << "enter coordinates: ";
