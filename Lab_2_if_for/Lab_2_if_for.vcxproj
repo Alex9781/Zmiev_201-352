@@ -21,8 +21,8 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{ade8942a-ccbd-438f-8a07-56da10c3153c}</ProjectGuid>
-    <RootNamespace>Lab1DataTypes</RootNamespace>
+    <ProjectGuid>{6b3baa53-e8db-4b8e-929a-d981761af6a9}</ProjectGuid>
+    <RootNamespace>Lab2iffor</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -139,7 +139,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Lab_1_DataTypes.cpp" />
+    <ClCompile Include="Lab_2_if_for.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

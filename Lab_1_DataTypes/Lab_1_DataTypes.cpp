@@ -9,7 +9,7 @@ int main()
 
     std::cout << "Zmiev Aleksandr Yurievich, 201-352" << std::endl;
 
-    std::cout << "2." <<std::endl;
+    std::cout << "2." << std::endl;
 
     std::cout << "min int = " << INT_MIN
         << ", max int = " << INT_MAX
@@ -47,7 +47,7 @@ int main()
         << ", max bool = " << bool(1)
         << ", size of bool = " << sizeof(bool) << std::endl;
 
-    std::cout << "3." <<  std::endl;
+    std::cout << "3." << std::endl;
 
     int digit;
     std::cout << "input: ";
