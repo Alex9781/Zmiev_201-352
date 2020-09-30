@@ -69,7 +69,22 @@ void task2()
 
 void task3()
 {
+	std::cout << "enter numbers. zero is stop \n";
+	int sum, count, input;
+	sum = 0;
+	count = 0;
 
+	while (true)
+	{
+		std::cin >> input;
+		if (!input) // а как???
+			break;
+		sum += input;
+		count++;
+	}
+	std::cout << "average: " << float(sum) / float(count) << std::endl;
+
+	chooseTask();
 }
 
 void task4()
