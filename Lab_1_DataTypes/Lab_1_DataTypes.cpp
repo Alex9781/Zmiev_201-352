@@ -1,6 +1,6 @@
 ﻿#include <iostream>
-#include <limits.h>
-#include <float.h>
+#include <limits>
+//#include <float.h>
 #include <bitset>
 
 int main()
@@ -44,31 +44,35 @@ int main()
         << ", size of char = " << sizeof(char) << std::endl;
 
     std::cout << "min bool = " << bool(0)
-        << ", max bool = " << bool(1)
+        << ", max bool = " << bool(255)
         << ", size of bool = " << sizeof(bool) << std::endl;
 
     std::cout << "3." << std::endl;
 
-    int digit;
+    int input;
     std::cout << "input: ";
-    std::cin >> digit;
-    std::cout << "bin: " << std::bitset<16>(digit) << "\n"
-        << "hex: " << std::hex << digit << "\n"
-        << "bool: " << bool(digit) << "\n"
-        << "double: " << double(digit) << "\n"
-        << "char: " << char(digit) << std::endl;
+    std::cin >> input;
+    std::cout << "bin: " << std::bitset<16>(input) << "\n"
+        << "hex: " << std::hex << input << "\n"
+        << "bool: " << bool(input) << "\n"
+        << "double: " << double(input) << "\n"
+        << "char: " << char(input) << std::endl;
 
     std::cout << "4." << std::endl;
 
     int a, b;
     std::cout << "enter a and b: a * x = b: ";
     std::cin >> a >> b;
-    std::cout << "x: " << float(b) / float(a) << std::endl;
+    std::cout << a << " * x = " << b << std::endl;
+    std::cout << "x = " << b << " / " << a << std::endl;
+    std::cout << "x = " << double(b) / a << std::endl;
 
     std::cout << "5." << std::endl;
 
     int x1, x2;
     std::cout << "enter coordinates: ";
     std::cin >> x1 >> x2;
-    std::cout << "centre: " << float(x1 + x2) / 2 << std::endl;
+    std::cout << "centre: " << double(x1 + x2) / 2 << std::endl;
+
+    return 0;
 }

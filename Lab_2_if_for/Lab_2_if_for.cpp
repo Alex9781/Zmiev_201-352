@@ -1,7 +1,9 @@
 ﻿#include <iostream>
+#include <string>
 
 void task1();
 void task2();
+double fact(double num);
 void task3();
 void task4();
 void chooseTask();
@@ -9,6 +11,7 @@ void chooseTask();
 int main()
 {
 	chooseTask();
+	return 0;
 }
 
 void chooseTask()
@@ -37,7 +40,7 @@ void chooseTask()
 		task4();
 		break;
 	default:
-		std::cout << "error" <<std::endl;
+		std::cout << "error" << std::endl;
 		chooseTask();
 		break;
 	}
@@ -64,25 +67,47 @@ void task1()
 
 void task2()
 {
+	double n;
+	std::cout << "enter n: ";
+	std::cin >> n;
 
+	for (int i = 0; i <= n; i++)
+	{
+		std::cout << fact(n) / (fact(n - i) * fact(i)) << " ";
+	}
+	std::cout << std::endl;
+
+	chooseTask();
+}
+
+double fact(double num)
+{
+	if (num == 0) return 1;
+	else return num * fact(num - 1);
 }
 
 void task3()
 {
-	std::cout << "enter numbers. zero is stop \n";
-	int sum, count, input;
+	getchar();
+	std::cout << "enter numbers. empty enter is stop \n";
+	int sum, count;
+	std::string S = "";
 	sum = 0;
 	count = 0;
 
 	while (true)
 	{
-		std::cin >> input;
-		if (!input) // а как???
-			break;
-		sum += input;
-		count++;
+		std::getline(std::cin, S);
+		if (S.empty()) break;		
+		else
+		{
+			int buf = std::atoi(S.c_str());
+			if (!buf) continue;
+			sum += buf;
+			count++;
+		}
 	}
-	std::cout << "average: " << float(sum) / float(count) << std::endl;
+	std::cout << "average: " << float(sum) / count << std::endl;
 
 	chooseTask();
 }
