@@ -98,13 +98,15 @@ void task3()
 	while (true)
 	{
 		std::getline(std::cin, S);
-		if (S.empty()) break;		
+		if (S.empty()) break;
 		else
 		{
 			int buf = std::atoi(S.c_str());
-			if (!buf) continue;
-			sum += buf;
-			count++;
+			if (std::to_string(buf) == S)
+			{
+				sum += buf;
+				count++;
+			}
 		}
 	}
 	std::cout << "average: " << float(sum) / count << std::endl;
