@@ -64,7 +64,7 @@ void Task1()
 
 	for (int i = 0; i < arrLen; i++)
 	{
-		arr[i] = rand();
+		arr[i] = rand() % 200 - 100;
 	}
 
 	PrintArray(arr, arrLen);
@@ -173,7 +173,7 @@ void Task3()
 
 	for (int i = 0; i < arrLen; i++)
 	{
-		arr[i] = rand();
+		arr[i] = rand() % 200 - 100;
 	}
 
 	PrintArray(arr, arrLen);
