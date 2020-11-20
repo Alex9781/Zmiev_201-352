@@ -1,9 +1,11 @@
 ﻿#include <iostream>
 
-void Task1();
-void Task2();
-void Task3();
-void Task4();
+bool Palindrom(char* str);
+int FindSubStr(char* str, char* subStr, int startPos);
+int* FindSubStr(char* str, char* subStr);
+void Encrypt(char* str, int key);
+void FindTitles(char* str);
+
 void ChooseTask();
 
 int main()
@@ -19,6 +21,7 @@ void ChooseTask() //выбор задания
 		<< "2. task 2 \n"
 		<< "3. task 3 \n"
 		<< "4. task 4 \n"
+		<< "5. task 5 \n"
 		<< "0. exit \n";
 
 	std::cin >> task;
@@ -27,17 +30,101 @@ void ChooseTask() //выбор задания
 	switch (task)
 	{
 	case 1:
-		Task1();
+	{
+		const int len = 255;
+		char text[len] = "";
+
+		std::getchar();
+		std::cin.getline(text, len, '\n');
+
+		bool x = Palindrom(text);
+
+		std::cout << x << std::endl;
+
+		ChooseTask();
 		break;
+	}
 	case 2:
-		Task2();
+	{
+		const int len = 255;
+		char text[len] = "";
+		char subText[len] = "";
+
+		std::getchar();
+		std::cin.getline(text, len, '\n');
+		std::cin.getline(subText, len, '\n');
+
+		int index;
+		std::cin >> index;
+
+		int y = FindSubStr(text, subText, index);
+
+		std::cout << y << std::endl;
+
+		ChooseTask();
 		break;
+	}
 	case 3:
-		Task3();
+	{
+		const int len = 255;
+		char text[len] = "";
+		char subText[len] = "";
+
+		std::getchar();
+		std::cin.getline(text, len, '\n');
+		std::cin.getline(subText, len, '\n');
+
+
+		int* z = FindSubStr(text, subText);
+
+		int _len = z[0];
+		for (int i = 1; i <= _len; i++)
+		{
+			std::cout << z[i] << " ";
+		}
+
+		std::cout << std::endl;
+
+		ChooseTask();
 		break;
+	}
 	case 4:
-		Task4();
+	{
+		const int len = 255;
+		char text[len] = "";
+
+		std::getchar();
+		std::cin.getline(text, len, '\n');
+
+		int key;
+		std::cin >> key;
+
+		Encrypt(text, key);
+
+		int j = 0;
+		while (text[j] != '\0')
+		{
+			std::cout << text[j];
+			j++;
+		}
+
+		std::cout << std::endl;
+
+		ChooseTask();
 		break;
+	}
+	case 5:
+	{
+		const int len = 255;
+		char text[len] = "";
+
+		std::getchar();
+		std::cin.getline(text, len, '\n');
+
+		FindTitles(text);
+		ChooseTask();
+		break;
+	}
 	case 0:
 		exit(0);
 		break;
@@ -48,81 +135,97 @@ void ChooseTask() //выбор задания
 	}
 }
 
-void Task1() //проверка на полиндром
+bool Palindrom(char* str) //проверка на полиндром
 {
-	const int len = 255;
-	char text[len] = "";
-
-	std::getchar();
-	std::cin.getline(text, len, '\n');
-
 	bool isMono = true;
 
-	for (int i = 0, j = len - 1; i < j; i++, j--)
+	for (int i = 0, j = 255 - 1; i < j; i++, j--)
 	{
-		if (text[i] == '\0') //игнорирование пустых символов
+		if (str[i] == '\0') //игнорирование пустых символов
 		{
 			j++;
 			continue;
 		}
-		if (text[j] == '\0')
+		if (str[j] == '\0')
 		{
 			i--;
 			continue;
 		}
 
-		if (text[i] == ' ') i++; //игнорирование пробелов
-		if (text[j] == ' ') j--;
+		if (str[i] == ' ') i++; //игнорирование пробелов
+		if (str[j] == ' ') j--;
 
-		if (text[i] <= 90) text[i] += 32; //большие буквы к маленьким
-		if (text[j] <= 90) text[j] += 32;
+		if (str[i] <= 90) str[i] += 32; //большие буквы к маленьким
+		if (str[j] <= 90) str[j] += 32;
 
-		if (text[i] != text[j])
+		if (str[i] != str[j])
 		{
 			isMono = false;
 			break;
 		}
 	}
 
-	if (isMono) std::cout << "string is poly" << std::endl;
-	else std::cout << "string isn't poly" << std::endl;
-
-	ChooseTask();
+	return isMono;
 }
 
-void Task2() //поиск индексов подстроки
+int FindSubStr(char* str, char* subStr, int startPos) //поиск индексов подстроки
 {
-	const int len = 255;
-	char text[len] = "";
-	char subText[len] = "";
-
-	std::getchar();
-	std::cin.getline(text, len, '\n');
-	std::cin.getline(subText, len, '\n');
-
-	int index[255] = { 0 };
-	int k = 0;
-
-	for (int i = 0; i < len; i++) //перебираем все символы строки
+	for (int i = startPos; i < 255; i++) //перебираем все символы строки
 	{
-		if (text[i] == '\0') //игнорирование пустых символов
+		if (str[i] == '\0') //игнорирование пустых символов
 		{
 			break;
 		}
 
-		if (text[i] == subText[0]) //если текущий символ совпадает с началом подстроки
+		if (str[i] == subStr[0]) //если текущий символ совпадает с началом подстроки
 		{
 			int buf = i;
 			bool isSub = true;
 
-			for (int j = 0, l = i; j < len; j++, l++) //сверяем полностью ли совпадают строки
+			for (int j = 0, l = i; j < 255; j++, l++) //сверяем полностью ли совпадают строки
 			{
-				if (text[l] == '\0' || subText[j] == '\0') //игнорирование пустых символов
+				if (str[l] == '\0' || subStr[j] == '\0') //игнорирование пустых символов
 				{
 					break;
 				}
 
-				if (text[l] != subText[j])
+				if (str[l] != subStr[j])
+				{
+					isSub = false;
+					break;
+				}
+			}
+
+			return buf;
+		}
+	}
+}
+
+int* FindSubStr(char* str, char* subStr) //поиск индексов подстроки
+{
+	static int index[255] = { 0 };
+	int k = 1;
+
+	for (int i = 0; i < 255; i++) //перебираем все символы строки
+	{
+		if (str[i] == '\0') //игнорирование пустых символов
+		{
+			break;
+		}
+
+		if (str[i] == subStr[0]) //если текущий символ совпадает с началом подстроки
+		{
+			int buf = i;
+			bool isSub = true;
+
+			for (int j = 0, l = i; j < 255; j++, l++) //сверяем полностью ли совпадают строки
+			{
+				if (str[l] == '\0' || subStr[j] == '\0') //игнорирование пустых символов
+				{
+					break;
+				}
+
+				if (str[l] != subStr[j])
 				{
 					isSub = false;
 					break;
@@ -137,57 +240,57 @@ void Task2() //поиск индексов подстроки
 		}
 	}
 
-	for (int i = 0; i < k; i++) //выводим получившийся массив индексов
-	{
-		std::cout << index[i] << " ";
-	}
-
-	std::cout << std::endl;
-	ChooseTask();
+	index[0] = k - 1;
+	return index;
 }
 
-void Task3() //шифрование Цезарем
+void Encrypt(char* str, int key) //шифрование Цезарем
 {
-	const int len = 255;
-	char text[len] = "";
-
-	std::getchar();
-	std::cin.getline(text, len, '\n');
-
-	int key;
-	std::cin >> key;
-	std::cout << std::endl;
-
-	for (int i = 0; i < len; i++)
+	for (int i = 0; i < 255; i++)
 	{
-		if (text[i] == '\0') //игнорирование пустых символов
+		if (str[i] == '\0') //игнорирование пустых символов
 		{
 			break;
 		}
 
-		text[i] += key; //шифруем по таблице ascii
-		std::cout << text[i] << " ";
-	}
+		if (str[i] == ' ') continue;
 
-	std::cout << std::endl;
-	ChooseTask();
+		//шифруем по таблице ascii
+		if (str[i] >= 65 && str[i] <= 90)
+		{
+			if ((str[i] + key) > 90)
+			{
+				str[i] = 64 + ((str[i] + key) % 90);
+			}
+			else
+			{
+				str[i] += key;
+			}
+		}
+		else if (str[i] >= 97 && str[i] <= 122)
+		{
+			if ((str[i] + key) > 122)
+			{
+				str[i] = 96 + ((str[i] + key) % 122);
+			}
+			else
+			{
+				str[i] += key;
+			}
+		}
+	}
 }
 
-void Task4() //поиск названий
+void FindTitles(char* str) //поиск названий
 {
 	const int len = 255;
-	char text[len] = "";
-
-	std::getchar();
-	std::cin.getline(text, len, '\n');
-
 	bool isIn = false;
 	char subText[len] = "";
 	int j = 0;
 
 	for (int i = 0; i < len; i++)
 	{
-		if (text[i] == '\"') //если нашли кавычку
+		if (str[i] == '\"') //если нашли кавычку
 		{
 			if (isIn) //и если мы уже внутри кавычек, считаем, что название законцилось
 			{
@@ -207,10 +310,8 @@ void Task4() //поиск названий
 		}
 		if (isIn) //составляем название
 		{
-			subText[j] = text[i];
+			subText[j] = str[i];
 			j++;
 		}
 	}
-
-	ChooseTask();
 }
