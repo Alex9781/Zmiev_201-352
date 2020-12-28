@@ -1,7 +1,6 @@
 #pragma once
 #include <iostream>
 
-//template <typename T>
 class Matrix
 {
 private:
@@ -54,6 +53,13 @@ public:
 		}
 	}
 
+	Matrix(int rows, int cols, int** matr)
+	{
+		this->rows = rows;
+		this->cols = cols;
+		this->matr = matr;
+	}
+
 	~Matrix()
 	{
 		for (int i = 0; i < this->rows; i++)
@@ -74,6 +80,11 @@ public:
 		}
 	}
 
+	void Input(int** arr)
+	{
+		this->matr = arr;
+	}
+
 	void Print()
 	{
 		for (int i = 0; i < this->rows; i++)
@@ -86,7 +97,7 @@ public:
 		}
 	}
 
-	static Matrix* Sum(Matrix& m1, Matrix& m2)
+	static Matrix* Sum(const Matrix& m1, const Matrix& m2)
 	{
 		if (m1.rows == m2.rows && m1.cols == m2.cols)
 		{
@@ -104,7 +115,13 @@ public:
 		}
 	}
 
-	static Matrix* Mult(Matrix& m1, Matrix& m2)
+	Matrix* Sum(int rows, int cols, int** arr)
+	{
+		Matrix m = Matrix(rows, cols, arr);
+		return Matrix::Sum(*this, m);
+	}
+
+	static Matrix* Mult(const Matrix& m1, const Matrix& m2)
 	{
 		if (m1.cols == m2.rows)
 		{
@@ -123,6 +140,12 @@ public:
 
 			return res;
 		}
+	}
+
+	Matrix* Mult(int rows, int cols, int** arr)
+	{
+		Matrix m = Matrix(rows, cols, arr);
+		return Matrix::Mult(*this, m);
 	}
 
 	static Matrix* Mult(const Matrix& m, double x)
@@ -177,3 +200,22 @@ public:
 	}
 };
 
+static Matrix operator+(const Matrix& m1, const Matrix& m2)
+{
+	return *Matrix::Sum(m1, m2);
+}
+
+static Matrix operator-(const Matrix& m1)
+{
+	return *Matrix::Mult(m1, -1);
+}
+
+static Matrix operator-(const Matrix& m1, const Matrix& m2)
+{
+	return *Matrix::Sum(m1, *Matrix::Mult(m2, -1));
+}
+
+static Matrix operator*(const Matrix& m1, const Matrix& m2)
+{
+	return *Matrix::Mult(m1, m2);
+}

@@ -1,36 +1,63 @@
 ﻿#include <iostream>
 #include "Matrix.h"
 
+class P
+{
+public:
+	int x;
+	int y;
+
+	P(int x, int y)
+	{
+		this->x = x;
+		this->y = y;
+	}
+	P() { }
+};
+
+class C : public virtual P
+{
+public:
+	int r;
+
+	C(int x, int y, int r)
+	{
+		this->x = x;
+		this->y = y;
+		this->r = r;
+	}
+	C() { }
+};
+
+class S : public virtual P
+{
+public:
+	int a;
+	S(int x, int y, int a)
+	{
+		this->x = x;
+		this->y = y;
+		this->a = a;
+	}
+	S() {}
+};
+
+class SC : public C, public S
+{
+public:
+	SC(int x, int y, int r)
+	{
+		S::x = x;
+		S::y = y;
+		C::r = r;
+	}
+};
+
 int main()
 {
 	Matrix m1(2, 2);
 	m1.Input();
-	//m1.Print();
-	//Matrix m2(1, 2);
-	//m2.Input();
-	//m2.Print();
-
-	//Matrix m3 = Matrix::Sum(m1, m1);
-	//m3.Print();
-
-	//Matrix* m4 = Matrix::Mult(m1, m1);
-	//m4->Print();
-
-	Matrix* m4 = Matrix::Mult(m1, 10);
-	m4->Print();
-
-	//std::cout << m1.Trace() << std::endl;
-
-	//std::cout << m1.Det() << std::endl;
-
-	//Matrix m5 = Matrix::Mult(m1, 3);
-	//m5.Print();
-
-
-	/*int a = 10;
-	int* p = &a;
-	int& r = a;
-	
-	std::cout << r;*/
+	Matrix m2 = -m1;
+	m2.Print();
 
 }
