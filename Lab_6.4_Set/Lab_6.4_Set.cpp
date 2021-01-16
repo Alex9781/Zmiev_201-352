@@ -23,6 +23,7 @@ int main()
 	Answer a3 = { 3, "aaa" };
 	Answer a4 = { 4, "fff" };
 	Answer a5 = { 5, "qqq" };
+	Answer a6 = { 1, "qqq" };
 
 	s1.insert(a1);
 	s1.insert(a5);
@@ -31,6 +32,7 @@ int main()
 	s1.insert(a4);
 	s1.insert(a2);
 	s1.insert(a3);
+	s1.insert(a6);
 
 	for (auto i : s1)
 	{

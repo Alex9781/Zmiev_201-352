@@ -15,7 +15,7 @@ struct MyStruct
 {
 	string Surname;
 	string Name;
-	int Age;
+	int Age = 0;
 };
 
 static bool operator>(MyStruct m1, MyStruct m2)
@@ -129,7 +129,7 @@ int main()
 	}
 	cout << endl;
 
-	float f[size] = { 2.69, 2.54, 2.0001, 2.894, 2.111, 2.321 };
+	double f[size] = { 2.69, 2.54, 2.0001, 2.894, 2.111, 2.321 };
 	Sort(f, 0, size - 1);
 
 	for (auto i : f)
